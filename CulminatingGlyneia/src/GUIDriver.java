@@ -8,7 +8,10 @@ import javafx.stage.*;
 import javafx.geometry.*;
 import javafx.scene.text.*;
 
-
+/*
+ * Notes :
+ * maybe merge the instructions and the rules onto one page
+ */
 public class GUIDriver extends Application {
 
 	@Override
@@ -90,8 +93,14 @@ public class GUIDriver extends Application {
          
          btnPlayer.getChildren().addAll(btnSingle,btnMulti);
          btnPlayer.setAlignment(Pos.CENTER);
+         
+         VBox timer = new VBox(10);
+         TextField timeM = new TextField();
+         timeM.setPrefWidth(50);
+         timeM.setVisible(false);
+         
+         timer.getChildren().add(timeM);
         
-         		
 		 
 		btnI.setOnAction(e-> {
             try {
@@ -135,9 +144,34 @@ public class GUIDriver extends Application {
             }
         });
 		
+		btnSingle.setOnAction(e-> {
+			try {
+				i1.setText("How long do you want to play for?");
+				timeM.setVisible(true);
+				int timeS = Integer.valueOf(timeM.getText());
+
+				
+			} catch (Exception exp) {
+				 System.out.println("Error: " + exp.getMessage());
+	             errorMessage.setText("Error: " + exp.getMessage());
+			}
+		});
 		
-		root.getChildren().addAll(lblTitle,i1,i2,i3);
+		btnMulti.setOnAction(e-> {
+			try {
+				i1.setText("How long do you want to play for?");
+				timeM.setVisible(true);
+				int timeS = Integer.valueOf(timeM.getText());
+				
+				
+			} catch (Exception exp) {
+				 System.out.println("Error: " + exp.getMessage());
+	             errorMessage.setText("Error: " + exp.getMessage());
+			}
+		});
+
 		
+		root.getChildren().addAll(lblTitle,i1,i2,i3,timer);
 
         root.setAlignment(Pos.CENTER);
 
