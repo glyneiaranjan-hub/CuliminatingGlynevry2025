@@ -27,7 +27,7 @@ public class GUIDriver extends Application {
 	    /*
 	    * The font for the text of the buttons and Error Message
 	    */ 
-	    Font font = new Font("Times New Roman", 15);
+	    Font font = new Font("Times New Roman", 17);
 		
 		/*
 	    * The Label holding the title
@@ -52,6 +52,10 @@ public class GUIDriver extends Application {
         Label i3 = new Label("");
 	    i3.setFont(font);
         i3.setTextFill(Color.BLACK);
+        
+        Label i4 = new Label("");
+	    i4.setFont(font);
+        i4.setTextFill(Color.BLACK);
 
         
         /*
@@ -65,12 +69,8 @@ public class GUIDriver extends Application {
          HBox btnHolder = new HBox(10);
          btnHolder.setStyle("-fx-background-color: lightskyblue;");
          btnHolder.setAlignment(Pos.BOTTOM_RIGHT);
-         Button btnI = new Button("Instructions →");
-         btnI.setFont(font);
-
-         Button btnR = new Button("Rules →");
-         btnR.setFont(font);
-         btnR.setVisible(false);
+         Button btnIR = new Button("Instructions/Rules →");
+         btnIR.setFont(font);
          
          Button btnS = new Button("Settings →");
          btnS.setFont(font);
@@ -88,14 +88,12 @@ public class GUIDriver extends Application {
          btnMulti.setFont(font);
          btnMulti.setVisible(false);
          
-         btnHolder.getChildren().addAll(btnI,btnS, btnR);
+         btnHolder.getChildren().addAll(btnIR,btnS);
          btnHolder.setAlignment(Pos.BOTTOM_RIGHT);
          
          btnPlayer.getChildren().addAll(btnSingle,btnMulti);
-         btnPlayer.setAlignment(Pos.CENTER);
+         btnPlayer.setAlignment(Pos.TOP_CENTER);
          
-         /*HBox timerH = new HBox(10);
-         timerH.setAlignment(Pos.CENTER);*/
          VBox timerV = new VBox(10);
          timerV.setAlignment(Pos.CENTER);
          
@@ -106,25 +104,19 @@ public class GUIDriver extends Application {
          timerV.getChildren().add(timeM);
         
 		 
-		btnI.setOnAction(e-> {
+		btnIR.setOnAction(e-> {
             try {
-            	i1.setText("Find as many words as possible in the given time.");
-            	i2.setText("Longer words are worth more points.");
-            	btnI.setVisible(false);
-            	btnR.setVisible(true);
-  
-            } catch (Exception exp){
-                System.out.println("Error: " + exp.getMessage());
-                errorMessage.setText("Error: " + exp.getMessage());
-            }
-        });
-		
-		btnR.setOnAction(e-> {
-            try {
-            	i1.setText("1. Words must be at least 3 letters in length");
-            	i2.setText("2. A die's letter can only be used once per word");
-            	i3.setText("3. Words cannot be proper nouns or abbreviations");
-            	btnR.setVisible(false);
+            	i1.setText("Instructions : ");
+            	i1.setUnderline(true);
+            	i2.setText("1) Find as many words as possible on the grid in the given time.\n "
+            	+"2)The words must be either vertically, horisontally, or diagonally connected. \n" 
+            	+ "3)Longer words are worth more points.");
+            	i3.setText("Rules : ");
+            	i3.setUnderline(true);
+            	i4.setText("1)Words must be at least 3 letters in length\n"
+            	+ "2)A die's letter can only be used once per word\n"
+            	+ "3)Words cannot be proper nouns or abbreviations");
+            	btnIR.setVisible(false);
             	btnS.setVisible(true);
   
             } catch (Exception exp){
@@ -135,9 +127,10 @@ public class GUIDriver extends Application {
 		
 		btnS.setOnAction(e-> {
             try {
-            	i1.setText("");
-            	i2.setText("");
-            	i3.setText("");
+            	i1.setVisible(false);
+            	i2.setVisible(false);
+            	i3.setVisible(false);
+            	i4.setVisible(false);
             	btnS.setVisible(false);
             	btnMulti.setVisible(true);
             	btnSingle.setVisible(true);
@@ -173,7 +166,7 @@ public class GUIDriver extends Application {
 		});
 
 		
-		root.getChildren().addAll(lblTitle,i1,i2,i3,timerV);
+		root.getChildren().addAll(lblTitle,i1,i2,i3,i4, timerV);
 
         root.setAlignment(Pos.CENTER);
 
