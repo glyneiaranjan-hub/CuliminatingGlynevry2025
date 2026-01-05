@@ -94,12 +94,16 @@ public class GUIDriver extends Application {
          btnPlayer.getChildren().addAll(btnSingle,btnMulti);
          btnPlayer.setAlignment(Pos.CENTER);
          
-         VBox timer = new VBox(10);
-         TextField timeM = new TextField();
-         timeM.setPrefWidth(50);
-         timeM.setVisible(false);
+         /*HBox timerH = new HBox(10);
+         timerH.setAlignment(Pos.CENTER);*/
+         VBox timerV = new VBox(10);
+         timerV.setAlignment(Pos.CENTER);
          
-         timer.getChildren().add(timeM);
+         TextField timeM = new TextField();
+         timeM.setMaxWidth(50);
+         timeM.setVisible(false);
+   
+         timerV.getChildren().add(timeM);
         
 		 
 		btnI.setOnAction(e-> {
@@ -146,9 +150,7 @@ public class GUIDriver extends Application {
 		
 		btnSingle.setOnAction(e-> {
 			try {
-				i1.setText("How long do you want to play for?");
-				timeM.setVisible(true);
-				int timeS = Integer.valueOf(timeM.getText());
+				
 
 				
 			} catch (Exception exp) {
@@ -171,7 +173,7 @@ public class GUIDriver extends Application {
 		});
 
 		
-		root.getChildren().addAll(lblTitle,i1,i2,i3,timer);
+		root.getChildren().addAll(lblTitle,i1,i2,i3,timerV);
 
         root.setAlignment(Pos.CENTER);
 
