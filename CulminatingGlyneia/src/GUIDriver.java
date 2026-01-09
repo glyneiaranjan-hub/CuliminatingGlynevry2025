@@ -19,7 +19,7 @@ import java.util.TimerTask;
 import javafx.application.Platform;
 
 public class GUIDriver extends Application {
-	
+	static int point=0;
 	@Override
 	public void start(Stage stage) throws Exception {
 		BorderPane bp = new BorderPane();
@@ -188,7 +188,6 @@ public class GUIDriver extends Application {
          }
 
          answer.setOnKeyPressed( event -> {
-        	 int point = 0;
         	 if(event.getCode() == KeyCode.ENTER ) {
         		 String word = answer.getText();
         		 if (!word.isEmpty() && !answers.contains(word)) {
@@ -233,7 +232,7 @@ public class GUIDriver extends Application {
         			 }
         			 answer.clear();
         			 }
-				 points.setText(Integer.toString(word.length()));
+    			 points.setText(Integer.toString(point));
         		 }
         	 });
          
@@ -332,7 +331,7 @@ public class GUIDriver extends Application {
             	bp.setBottom(timeDisplay);
             	
             	// Java COUNTDOWN TIMER PROGRAM - SINGLEPLAYER
-                int time = 5;
+                int time = 180;
 
                 Timer timer = new Timer();
                 TimerTask task = new TimerTask(){

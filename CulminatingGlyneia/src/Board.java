@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/*
+ * Creates a Board as a 4 by 4 grid 2D array.
+ * Provides methods to shuffle the into random position on the grid and retrieve the die at a 
+ * specific position through row and column coordinate
+ */
 public class Board {
 	private Die[][] board = new Die[4][4];
 	
@@ -22,6 +27,9 @@ public class Board {
 			{"D","E","I","L","R","X"}
 	};
 	
+	/*
+	 * Method to shuffle the dice randomly on the 4 by 4 board
+	 */
 	private void shuffleDice() {
 		//creates an array list of integers from 0 - 15, keeps track of available dice
 		ArrayList<Integer> bag= new ArrayList<>();
@@ -40,8 +48,13 @@ public class Board {
 			shuffled[pos]= diceFaces[dieIndex]; // place die
 		}
 		
+		//puts shuffled dice positions in original diceFaces 2D array 
 		diceFaces = shuffled;
 	}
+	
+	/*
+	 * Constructs a board with 4 rows and 4 columns of Die objects 
+	 */
 	
 	public Board() {
 		shuffleDice();
@@ -54,6 +67,14 @@ public class Board {
 			}
 		}
 	}
+	
+	/*
+    * Provides the die at a specific column and row (coordinate on the board) for easy facilitation 
+    * with check class
+    * @param int r representing the row 
+    * @param int c representing the column s
+    * @return Die placed at that coordinate on the board
+    */
 	
 	public Die getDie(int r, int c) {
 		return board [r][c];
